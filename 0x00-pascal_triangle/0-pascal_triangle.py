@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+
+
 def pascal_triangle(n):
+    """ Pascal Triangle """
     if n == 0:
         return []
     pascal_list = []

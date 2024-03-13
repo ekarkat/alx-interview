@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+""" Lock stock and two smoking barrels """
 
 
 def canUnlockAll(boxes):
+    """ the function """
     if not boxes:
         return False
 

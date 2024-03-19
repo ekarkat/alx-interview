@@ -8,7 +8,7 @@ def minOperations(n):
     step = 0
     op = 2
     change = False
-    if n == 0 or n == 1:
+    if n <= 0 or n == 1:
         return 0
 
     for j in range(n):

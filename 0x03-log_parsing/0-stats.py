@@ -21,7 +21,7 @@ count = 0
 try:
     for line in sys.stdin:
         count += 1
-        parts = line.split()
+        parts = line.split(" ")
         try:
             if parts[-2] in status_codes.keys() and parts[-1].isdigit:
                 status_codes[parts[-2]] += 1

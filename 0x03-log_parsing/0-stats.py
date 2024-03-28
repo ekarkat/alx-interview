@@ -23,12 +23,12 @@ try:
         count += 1
         parts = line.split()
         try:
-            if parts[-2] in status_codes.keys():
+            if parts[-2] in status_codes.keys() and parts[-1].isdigit:
                 status_codes[parts[-2]] += 1
-            file_size = file_size + int(parts[-1])
+                file_size = file_size + int(parts[-1])
         except Exception:
             pass
-        if count % 10 == 0:
+        if count % 10 == 0 and file_size != 0:
             print_out(status_codes, file_size)
 
 except KeyboardInterrupt:

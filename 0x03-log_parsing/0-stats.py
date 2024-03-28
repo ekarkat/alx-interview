@@ -23,11 +23,11 @@ try:
         count += 1
         parts = line.split()
         try:
-            status_codes[parts[7]] += 1
+            status_codes[parts[-2]] += 1
         except Exception:
             pass
         try:
-            file_size = file_size + int(parts[8])
+            file_size = file_size + int(parts[-1])
         except Exception:
             pass
         if count % 10 == 0:

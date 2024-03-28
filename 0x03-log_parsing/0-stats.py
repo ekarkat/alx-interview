@@ -23,7 +23,8 @@ try:
         count += 1
         parts = line.split()
         try:
-            status_codes[parts[-2]] += 1
+            if parts[-2] in status_codes.keys():
+                status_codes[parts[-2]] += 1
         except Exception:
             pass
         try:

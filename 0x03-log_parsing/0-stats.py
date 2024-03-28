@@ -4,11 +4,11 @@
 import sys
 
 
-def print_out(dic, size):
+def print_out(status, size):
     """Print function"""
     print("File size: {}".format(size))
-    for key, value in sorted(dic.items()):
-        if dic[key] != 0:
+    for key, value in sorted(status.items()):
+        if value != 0:
             print("{}: {}".format(key, value))
 
 
@@ -25,9 +25,6 @@ try:
         try:
             if parts[-2] in status_codes.keys():
                 status_codes[parts[-2]] += 1
-        except Exception:
-            pass
-        try:
             file_size = file_size + int(parts[-1])
         except Exception:
             pass

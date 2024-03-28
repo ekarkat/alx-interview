@@ -12,8 +12,8 @@ def print_out(dic, size):
             print("{}: {}".format(key, dic[key]))
 
 
-status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0,
-                404: 0, 405: 0, 500: 0}
+status_codes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
+                '404': 0, '405': 0, '500': 0}
 
 file_size = 0
 count = 0
@@ -25,7 +25,7 @@ try:
         if len(parts) == 9:
             if parts[7].isdigit and parts[8].isdigit:
                 try:
-                    status_codes[int(parts[7])] += 1
+                    status_codes[parts[7]] += 1
                 except Exception:
                     pass
                 try:

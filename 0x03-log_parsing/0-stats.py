@@ -23,8 +23,9 @@ try:
         count += 1
         parts = line.split(" ")
         try:
-            if parts[-2] in status_codes.keys() and parts[-1].isdigit:
+            if parts[-2] in status_codes.keys():
                 status_codes[parts[-2]] += 1
+            if parts[-1].isdigit:
                 file_size = file_size + int(parts[-1])
         except Exception:
             pass

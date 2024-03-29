@@ -18,13 +18,14 @@ file_size = 0
 count = 0
 
 try:
-    for line in sys.stdin:
+    for line in texto:
         count += 1
         parts = line.split()
         try:
-            if parts[-2] in status_codes.keys() and parts[-1].isdigit:
+            if parts[-2] in status_codes.keys():
                 status_codes[parts[-2]] += 1
-                file_size = file_size + int(parts[-1])
+            if parts[-1].isdigit:
+                file_size += int(parts[-1])
         except Exception:
             pass
         if count % 10 == 0 and file_size != 0 and count != 0:

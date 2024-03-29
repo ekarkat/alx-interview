@@ -5,6 +5,7 @@ import sys
 
 
 def print_msg(file_size, status_codes):
+    """the print msg"""
     print("File size: {}".format(file_size))
     for key, value in sorted(status_codes.items()):
         if value != 0:

@@ -4,10 +4,10 @@
 import sys
 
 
-def print_msg(file_size, status_codes):
-    """the print msg"""
-    print("File size: {}".format(file_size))
-    for key, value in sorted(status_codes.items()):
+def print_out(status, size):
+    """Print function"""
+    print("File size: {}".format(size))
+    for key, value in sorted(status.items()):
         if value != 0:
             print("{}: {}".format(key, value))
 
@@ -19,20 +19,18 @@ file_size = 0
 count = 0
 
 try:
-    for line in texto:
+    for line in sys.stdin:
         count += 1
-        parts = line.split()
+        parts = line.split(" ")
         try:
-            if parts[-2] in status_codes.keys():
+            if parts[-2] in status_codes.keys() and parts[-1].isdigit:
                 status_codes[parts[-2]] += 1
-            if parts[-1].isdigit:
-                file_size += int(parts[-1])
+                file_size = file_size + int(parts[-1])
         except Exception:
             pass
-        if count % 10 == 0 and file_size != 0 and count != 0:
-            print_msg(file_size, status_codes)
-    print_msg(file_size, status_codes)
-
+        if count % 10 == 0 and file_size != 0:
+            print_out(status_codes, file_size)
+    print_out(status_codes, file_size)
 
 except KeyboardInterrupt:
-    print_msg(file_size, status_codes)
+    print_out(status_codes, file_size)

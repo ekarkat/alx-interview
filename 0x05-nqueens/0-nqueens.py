@@ -34,7 +34,7 @@ def solveNQueens(n):
                 posd.add(po)
                 negd.add(ne)
                 # Add queen to the state
-                new_state = state + [(row, col)]
+                new_state = state + [[row, col]]
                 # Recursively explore with the new state
                 backtrack(row + 1, new_state)
                 # Backtrack by removing the last queen placed

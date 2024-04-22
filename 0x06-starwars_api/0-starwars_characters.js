@@ -29,7 +29,7 @@ function charName (peopleId) {
   });
 }
 
-async function result (movieId, charId) {
+async function result (movieId) {
   const chars = await film(movieId);
   for (const link of chars) {
     const name = await charName(link);

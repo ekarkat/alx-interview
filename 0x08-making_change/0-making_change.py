@@ -9,7 +9,6 @@ def makeChange(coins, total):
 
     if not total:
         return 0
-    print(coins)
     for coin in coins:
         num = total // coin
         total = total - (coin*num)

@@ -47,33 +47,25 @@ def isWinner(x, nums):
         # print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         # print("round {} , numbers are {} ".format(turn, numbers))
 
-        if numbers == [1] and maria['turn']:
-            maria['wins'] += 1
-            # print('jack pot maria wins')
-            i += 1
-            maria['turn'] = False
-            ben['turn'] = True
-            continue
-
-        if numbers == [1] and ben['turn']:
+        if numbers == [1]:
             ben['wins'] += 1
-            # print('jack pot ben wins')
+            print('jack pot maria wins')
             i += 1
-            ben['turn'] = False
             maria['turn'] = True
+            ben['turn'] = False
             continue
 
         while True:
-            # print(numbers)
+            print(numbers)
             if maria['turn']:
-                # print("maria round")
+                print("maria round")
                 if len(numbers) == 1:
                     ben['wins'] += 1
                     maria['turn'] = True
                     ben['turn'] = False
                     i += 1
-                    # print("maria wins : {}".format(maria['wins']))
-                    # print("ben wins : {}".format(ben['wins']))
+                    print("maria wins : {}".format(maria['wins']))
+                    print("ben wins : {}".format(ben['wins']))
                     break
                 del_mult(prime, numbers)
                 prime = next_prime(prime)
@@ -81,15 +73,15 @@ def isWinner(x, nums):
                 ben['turn'] = True
 
             else:
-                # print("ben round")
+                print("ben round")
 
                 if len(numbers) == 1:
                     maria['wins'] += 1
-                    ben['turn'] = True
-                    maria['turn'] = False
+                    ben['turn'] = False
+                    maria['turn'] = True
                     i += 1
-                    # print("maria wins : {}".format(maria['wins']))
-                    # print("ben wins : {}".format(ben['wins']))
+                    print("maria wins : {}".format(maria['wins']))
+                    print("ben wins : {}".format(ben['wins']))
                     break
                 del_mult(prime, numbers)
                 prime = next_prime(prime)

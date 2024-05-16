@@ -1,25 +1,26 @@
-#!/usr/bin/python3
-""" Prime game function """
-
-
 def is_prime(n):
-    """ check if n is prime """
-    for i in range(2, n):
-        if n % i == 0:
+    """Check if n is a prime number."""
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
             return False
+        i += 6
     return True
-
 
 def next_prime(x):
     """Return the next prime number after x."""
     if x == 2:
-        return 3
+      return 3
+
     candidate = x + 2
     while True:
         if is_prime(candidate):
             return candidate
         candidate += 1
-
 
 def del_mult(n, lis):
     """Remove multiples of n from the list nums in place."""
@@ -30,71 +31,40 @@ def del_mult(n, lis):
         else:
             i += 1
 
-
 def number_list(n):
+    """Create a list of numbers from 1 to n."""
     return list(range(1, n + 1))
 
-
 def isWinner(x, nums):
-    """ Return the winner """
-    i = 0
-    maria = {"turn": True, 'wins': 0}
-    ben = {"turn": False, 'wins': 0}
-    for turn in range(x):
-        numbers = number_list(nums[i])
+    """Determine the winner after x rounds given nums as the list of rounds."""
+    maria_wins = 0
+    ben_wins = 0
+
+    for n in nums:
+        numbers = number_list(n)
+        turn = 0  # 0 for Maria, 1 for Ben
         prime = 2
-
-        # print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-        # print("round {} , numbers are {} ".format(turn, numbers))
-
-        if numbers == [1] and maria['turn']:
-            maria['wins'] += 1
-            # print('jack pot maria wins')
-            i += 1
-            continue
-
-        if numbers == [1] and ben['turn']:
-            ben['wins'] += 1
-            # print('jack pot ben wins')
-            i += 1
-            continue
-
+        
         while True:
-            # print(numbers)
-            if maria['turn']:
-                # print("maria round")
-                if len(numbers) == 1:
-                    ben['wins'] += 1
-                    maria['turn'] = True
-                    ben['turn'] = False
-                    i += 1
-                    # print("maria wins : {}".format(maria['wins']))
-                    # print("ben wins : {}".format(ben['wins']))
-                    break
+            if not any(is_prime(num) for num in numbers):
+                if turn == 0:
+                    ben_wins += 1
+                else:
+                    maria_wins += 1
+                break
+
+            if turn == 0:  # Maria's turn
                 del_mult(prime, numbers)
                 prime = next_prime(prime)
-                maria['turn'] = False
-                ben['turn'] = True
-
-            else:
-                # print("ben round")
-
-                if len(numbers) == 1:
-                    maria['wins'] += 1
-                    ben['turn'] = True
-                    maria['turn'] = False
-                    i += 1
-                    # print("maria wins : {}".format(maria['wins']))
-                    # print("ben wins : {}".format(ben['wins']))
-                    break
+                turn = 1  # Switch to Ben's turn
+            else:  # Ben's turn
                 del_mult(prime, numbers)
                 prime = next_prime(prime)
-                ben['turn'] = False
-                maria['turn'] = True
+                turn = 0  # Switch to Maria's turn
 
-    if maria['wins'] > ben['wins']:
+    if maria_wins > ben_wins:
         return "Maria"
-    if ben['wins'] > maria['wins']:
+    elif ben_wins > maria_wins:
         return "Ben"
-    if ben['wins'] == maria['wins']:
+    else:
         return None

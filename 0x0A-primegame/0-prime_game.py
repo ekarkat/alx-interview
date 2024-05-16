@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" Prime Game """
+
+
 def is_prime(n):
     """Check if n is a prime number."""
     if n <= 3:
@@ -11,16 +15,18 @@ def is_prime(n):
         i += 6
     return True
 
+
 def next_prime(x):
     """Return the next prime number after x."""
     if x == 2:
-      return 3
+        return 3
 
     candidate = x + 2
     while True:
         if is_prime(candidate):
             return candidate
         candidate += 1
+
 
 def del_mult(n, lis):
     """Remove multiples of n from the list nums in place."""
@@ -31,9 +37,11 @@ def del_mult(n, lis):
         else:
             i += 1
 
+
 def number_list(n):
     """Create a list of numbers from 1 to n."""
     return list(range(1, n + 1))
+
 
 def isWinner(x, nums):
     """Determine the winner after x rounds given nums as the list of rounds."""
@@ -44,7 +52,7 @@ def isWinner(x, nums):
         numbers = number_list(n)
         turn = 0  # 0 for Maria, 1 for Ben
         prime = 2
-        
+
         while True:
             if not any(is_prime(num) for num in numbers):
                 if turn == 0:
